@@ -6,7 +6,6 @@ import com.tools.DBTools;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.*;
 
-import java.util.List;
 
 public class UserTest {
     //    要用4.12版本的才可以
@@ -15,7 +14,7 @@ public class UserTest {
     public void insertUser(){
         SqlSession session = DBTools.getSession();
         UserMapper mapper = session.getMapper(UserMapper.class);
-        User user = new User("John");
+        User user = new User(1,"Nice");
         try {
             mapper.insert(user);
             System.out.println(user.toString());
@@ -40,13 +39,30 @@ public class UserTest {
         }
     }
 
+    @Test
+    //修改操作
+    public void updateUser() {
+        SqlSession session=DBTools.getSession();
+        UserMapper mapper=session.getMapper(UserMapper.class);
+        User user = new User(1,"Lucy");
+        try {
+            mapper.updateByPrimaryKey(user);
+            System.out.println(user.toString());
+            session.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.rollback();
+        }
+    }
+
 
     @Test
+    // 查询操作
     public void selectAllUser(){
         SqlSession session = DBTools.getSession();
         UserMapper mapper = session.getMapper(UserMapper.class);
         try{
-            List<User> user = mapper.selectByPrimaryKey(1);
+            User user = mapper.selectByPrimaryKey(1);
             System.out.println(user.toString());
             session.commit();
         }catch (Exception e){

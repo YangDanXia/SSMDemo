@@ -2,8 +2,6 @@ package com.dao;
 
 import com.model.User;
 
-import java.util.List;
-
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -11,7 +9,7 @@ public interface UserMapper {
 
     int insertSelective(User record);
 
-    List<User> selectByPrimaryKey(Integer id);
+    User selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(User record);
 

@@ -9,10 +9,13 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public User(){}
-
-    public User(String userName){
+    public User(Integer id, String userName) {
+        this.id = id;
         this.userName = userName;
+    }
+
+    public User() {
+        super();
     }
 
     public Integer getId() {
@@ -29,5 +32,9 @@ public class User implements Serializable {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String toString(){
+        return "User[id=" + id + ",userName=" + userName +"]";
     }
 }

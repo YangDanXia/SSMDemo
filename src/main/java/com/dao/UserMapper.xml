@@ -2,31 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.dao.UserMapper" >
   <resultMap id="BaseResultMap" type="com.model.User" >
-    <id column="Id" property="id" jdbcType="INTEGER" />
-    <result column="userName" property="userName" jdbcType="VARCHAR" />
+    <constructor >
+      <idArg column="Id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="userName" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
   </resultMap>
-
   <sql id="Base_Column_List" >
     Id, userName
   </sql>
-
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from user
     where Id = #{id,jdbcType=INTEGER}
   </select>
-
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from user
     where Id = #{id,jdbcType=INTEGER}
   </delete>
-
-  <insert id="insert" parameterType="com.model.User" >
+  <insert id="insert" parameterType="com.model.User" useGeneratedKeys="true" keyProperty="id">
     insert into user (Id, userName)
     values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR})
   </insert>
-
   <insert id="insertSelective" parameterType="com.model.User" >
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
