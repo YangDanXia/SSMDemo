@@ -1,2 +1,2 @@
-# Shopping_SSM
+# SSMDemo
 SSM框架学习
