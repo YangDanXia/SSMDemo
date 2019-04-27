@@ -27,6 +27,16 @@
         <filter-name>EncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <!--请求头过滤器-->
+    <filter>
+        <filter-name>corsFilter</filter-name>
+        <filter-class>api.filter.CorsFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>corsFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
 
     <!--监听器-->
     <listener>
